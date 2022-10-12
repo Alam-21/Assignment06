@@ -61,3 +61,65 @@ module.exports.getAllPrograms = function(){
         resolve(programs);
     })
 }
+
+module.exports.addStudent = (studentData) => {
+    studentData.isInternationalStudent==undefined ? studentData.isInternationalStudent = false : studentData.isInternationalStudent = true;
+    let highest=0,integerID;
+    for(let i=0;i<students.length;i++){
+        integerID=parseInt(students[i].studentID);
+        if(integerID>highest){
+            highest=integerID;
+        }
+    }
+    studentData.studentID = String(highest + 1);
+    students.push(studentData);
+
+    return new Promise((resolve,reject) => {
+        if (students.length == 0) {
+            reject ('no results');
+        }
+        else {
+            resolve(students);
+        }
+    })
+};
+
+module.exports.getStudentsByStatus = (status) => {
+    return new Promise((resolve,reject) => {
+        var student_status = students.filter(student => student.status == status);
+        if (student_status.length == 0) {
+            reject('no results returned');
+        }
+        resolve(student_status);
+    })
+};
+
+module.exports.getStudentsByProgramCode = (programCode) => {
+    return new Promise((resolve,reject) => {
+        var student_program = students.filter(student => student.program == programCode);
+        if (student_program.length == 0) {
+            reject('no results returned');
+        }
+        resolve(student_program);
+    })
+};
+
+module.exports.getStudentsByExpectedCredential = (credential) => {
+    return new Promise ((resolve,reject) => {
+        var student_credential = students.filter(student => student.expectedCredential == credential);        
+        if (student_credential.length == 0) {
+            reject ('no results returned');
+        }
+        resolve(student_credential);
+    })
+};
+
+module.exports.getStudentById = (sid) => {
+    return new Promise((resolve,reject) => {
+        var student_id = students.filter(student => student.studentID == sid);
+        if (student_id.length == 0) {
+            reject('no results returned');
+        }
+        resolve(student_id);
+    })
+};
