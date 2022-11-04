@@ -123,3 +123,16 @@ module.exports.getStudentById = (sid) => {
         resolve(student_id);
     })
 };
+
+module.exports.updateEmployee = (studentData) => {
+    return new Promise ((resolve,reject) => {
+        for(var i=0;i<students.length;i++){
+            if (students[i].studentID == studentData.studentID) {
+                students[i]=studentData;
+            }
+
+        }
+        resolve();
+        
+    })
+};
