@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h2>Students</h2>
+        <h2>Students<a href="/students/add" class="btn btn-success pull-right">Add New Student</a></h2>
         <hr />
         <div class="table-responsive">
             <table class="table">
@@ -10,23 +10,24 @@
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Address</th>
-                        <th>Expected Credential</th>
+                        <th>Expected&nbsp;Credential</th>
                         <th>Status</th>
                         <th>Program</th>
-                        <th>Registration Date</th>
+                        <th>Registration&nbsp;Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each students}}
                     <tr>
-                        <td><a href="/students/{{this.studentID}}">{{this.studentID}}</td>
-                        <td>{{this.firstName}} {{this.lastName}}</td>
-                        <td><a href="mailto:{{this.email}}">{{this.email}}</a></td>
-                        <td>{{this.addressStreet}} <br> {{this.addressCity}}, {{this.addressState}} <br>{{this.addressPostal}}</td>
-                        <td><a href="/students?credential={{this.expectedCredential}}">{{this.expectedCredential}}</a></td>
-                        <td><a href="/students?status={{this.status}}">{{this.status}}</a></td>
-                        <td><a href="/students?program={{this.program}}">{{this.program}}</a></td>
-                        <td>{{this.registrationDate}}</td>
+                        <td><a href="/student/{{studentID}}">{{studentID}}</td>
+                        <td>{{firstName}} {{lastName}}</td>
+                        <td><a href="mailto:{{email}}">{{email}}</a></td>
+                        <td>{{addressStreet}} <br> {{addressCity}}, {{addressState}} <br>{{addressPostal}}</td>
+                        <td><a href="/students?credential={{expectedCredential}}">{{expectedCredential}}</a></td>
+                        <td><a href="/students?status={{status}}">{{status}}</a></td>
+                        <td><a href="/students?program={{program}}">{{program}}</a></td>
+                        <td>{{registrationDate}}</td>
+                        <td><a class="btn btn-danger" href="/students/delete/{{studentID}}">remove</a></td
                     </tr>
                     {{/each}}
                 </tbody>
